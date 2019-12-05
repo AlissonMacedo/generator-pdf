@@ -62,9 +62,9 @@ export default function Home() {
     setNewName(e.target.value);
   }
 
-  // function handleDelete(name) {
-  //   setList(list.filter(t => t !== name));
-  // }
+  function handleDelete(name) {
+    setState(state.filter(t => t !== name));
+  }
 
   return (
     <>
@@ -122,7 +122,7 @@ export default function Home() {
                   </Link>
                 </th>
                 <th>
-                  <button>
+                  <button onClick={() => handleDelete(list)}>
                     <MdDeleteForever color="#333" size={20} />
                   </button>
                 </th>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Input } from "@rocketseat/unform";
 import * as Yup from "yup";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import {
   MdRemoveRedEye,
@@ -112,9 +113,6 @@ export default function Home() {
                   }}
                 >
                   {list.name}
-                </th>
-                <th>
-                  <MdRemoveRedEye color="#333" size={20} />
                 </th>
                 <th>
                   <Link to={{ pathname: "/certificate", state: { list } }}>

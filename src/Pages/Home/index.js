@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { Form, Input } from "@rocketseat/unform";
 import * as Yup from "yup";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 
-import {
-  MdRemoveRedEye,
-  MdCloudDownload,
-  MdDeleteForever
-} from "react-icons/md";
+import { MdCloudDownload, MdDeleteForever } from "react-icons/md";
 
-import {
-  Container,
-  Wrapper,
-  Content,
-  ButtonAdd,
-  DivHeader,
-  DivTab
-} from "./styles";
+import { Container, Content, ButtonAdd, DivHeader } from "./styles";
 
 import { postNewTask } from "../../store/modules/task/actions";
 
@@ -66,6 +54,21 @@ export default function Home() {
   function handleDelete(name) {
     setState(state.filter(t => t !== name));
   }
+
+  useEffect(() => {
+    const list = localStorage.getItem("list");
+
+    if (list) {
+      setState(JSON.parse(list));
+    }
+  }, []);
+
+  useEffect(() => {
+    function SetaList() {
+      localStorage.setItem("list", JSON.stringify(state));
+    }
+    SetaList();
+  }, [state]);
 
   return (
     <>
